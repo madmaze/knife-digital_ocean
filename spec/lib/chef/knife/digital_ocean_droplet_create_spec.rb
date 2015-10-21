@@ -5,7 +5,7 @@ require 'droplet_kit'
 describe Chef::Knife::DigitalOceanDropletCreate do
   let(:config) do
     {
-      digital_ocean_access_token: 'FAKE',
+      digital_ocean_access_token: 'FAKE_ACCESS_TOKEN',
       server_name: 'sever-name.example.com',
       image: 11_111,
       location: 22_222,

@@ -28,16 +28,14 @@ RSpec.configure do |c|
     if subject.class.respond_to? :load_deps
       subject.class.load_deps
     end
-
-    #allow(subject).to receive(:client).and_return client
   end
 end
 
-#SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-#  Coveralls::SimpleCov::Formatter,
-#  SimpleCov::Formatter::HTMLFormatter,
-#  SimpleCov::Formatter::Console
-#]
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+  Coveralls::SimpleCov::Formatter,
+  SimpleCov::Formatter::HTMLFormatter,
+  SimpleCov::Formatter::Console
+]
 SimpleCov.start
 
 # Cleverly borrowed from knife-rackspace, thank you!

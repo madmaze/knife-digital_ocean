@@ -4,8 +4,6 @@ require 'chef/knife/digital_ocean_domain_create'
 describe Chef::Knife::DigitalOceanDomainCreate do
 
   before :each do
-    Chef::Knife::DigitalOceanDomainCreate.load_deps
-    allow(subject).to receive(:puts)
     subject.config[:name] = 'kitchen-digital.org'
     subject.config[:ip_address] = '192.168.1.1'
   end

@@ -4,7 +4,6 @@ require 'chef/knife/digital_ocean_domain_list'
 describe Chef::Knife::DigitalOceanDomainList do
 
   before :each do
-    Chef::Knife::DigitalOceanDomainList.load_deps
     allow(subject).to receive(:puts)
   end
 
