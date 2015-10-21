@@ -1,7 +1,7 @@
 require 'spec_helper'
+require 'chef/knife/digital_ocean_droplet_rename'
 
 describe Chef::Knife::DigitalOceanDropletRename do
-  subject { Chef::Knife::DigitalOceanDropletRename.new }
 
   let(:access_token) { ENV['DIGITALOCEAN_ACCESS_TOKEN'] }
 

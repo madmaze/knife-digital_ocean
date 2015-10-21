@@ -1,7 +1,7 @@
 require 'spec_helper'
+require 'chef/knife/digital_ocean_droplet_powercycle'
 
 describe Chef::Knife::DigitalOceanDropletPowercycle do
-  subject { Chef::Knife::DigitalOceanDropletPowercycle.new }
 
   let(:access_token) { ENV['DIGITALOCEAN_ACCESS_TOKEN'] }
 

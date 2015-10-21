@@ -1,38 +1,21 @@
 require 'spec_helper'
+require 'chef/knife/digital_ocean_account_info'
 
 describe Chef::Knife::DigitalOceanAccountInfo do
-  subject { Chef::Knife::DigitalOceanAccountInfo.new }
-
-  let(:access_token) { ENV['DIGITALOCEAN_ACCESS_TOKEN'] }
-
-  before :each do
-    Chef::Knife::DigitalOceanAccountInfo.load_deps
-    Chef::Config['knife']['digital_ocean_access_token'] = access_token
-    allow(subject).to receive(:puts)
+  let(:account_info_mock) do
+    double('account_info_mock',
+      uuid: 'b6fr89dbf6d9156cace5f3c78dc9851d957381ef',
+      email: 'sammy@digitalocean.com',
+      droplet_limit: 25,
+      email_verified: true)
   end
 
   describe '#run' do
-    it 'should validate the Digital Ocean config keys exist' do
-      VCR.use_cassette('accountinfo') do
-        expect(subject).to receive(:validate!)
-        subject.run
-      end
-    end
-
-    it 'should output the column headers' do
-      VCR.use_cassette('accountinfo') do
-        expect(subject).to receive(:puts)
-          .with(/^UUID\s+Email\s+Droplet Limit\s+Email Verified\n/)
-        subject.run
-      end
-    end
-
-    it 'should output a list of the available Digital Ocean account info' do
-      VCR.use_cassette('accountinfo') do
-        expect(subject).to receive(:puts)
-          .with(/\b49e2e737d3a7407a042bb7e88f4da8629166f2b9\s+greg@gregf.org\s+20\s+true\s+\n/)
-        subject.run
-      end
+    it 'calls the right account method' do
+      expect(subject).to receive_message_chain('client.account.info')
+        .and_return account_info_mock
+      expect(subject).to receive(:validate!)
+      subject.run
     end
   end
 end

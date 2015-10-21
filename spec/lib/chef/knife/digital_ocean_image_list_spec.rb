@@ -1,7 +1,7 @@
 require 'spec_helper'
+require 'chef/knife/digital_ocean_image_list'
 
 describe Chef::Knife::DigitalOceanImageList do
-  subject { Chef::Knife::DigitalOceanImageList.new }
 
   let(:access_token) { ENV['DIGITALOCEAN_ACCESS_TOKEN'] }
 

@@ -1,14 +1,10 @@
 require 'spec_helper'
+require 'chef/knife/digital_ocean_domain_record_list'
 
 describe Chef::Knife::DigitalOceanDomainRecordList do
-  subject { Chef::Knife::DigitalOceanDomainRecordList.new }
-
-  let(:access_token) { ENV['DIGITALOCEAN_ACCESS_TOKEN'] }
 
   before :each do
     Chef::Knife::DigitalOceanDomainRecordList.load_deps
-    Chef::Config['knife']['digital_ocean_access_token'] = access_token
-    allow(subject).to receive(:puts)
     subject.config[:name] = 'kitchen-digital.org'
   end
 

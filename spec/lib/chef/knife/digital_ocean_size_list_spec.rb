@@ -1,10 +1,8 @@
 require 'spec_helper'
+require 'chef/knife/digital_ocean_size_list'
 
 describe Chef::Knife::DigitalOceanSizeList do
-  subject do
-    s = Chef::Knife::DigitalOceanSizeList.new
-    s
-  end
+
 
   let(:access_token) { ENV['DIGITALOCEAN_ACCESS_TOKEN'] }
 

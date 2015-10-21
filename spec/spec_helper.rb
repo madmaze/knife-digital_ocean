@@ -1,5 +1,4 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib', 'chef', 'knife'))
-require 'droplet_kit'
 require 'hashie'
 require 'vcr'
 require 'rspec'
@@ -7,31 +6,6 @@ require 'chef/knife'
 require 'coveralls'
 require 'simplecov'
 require 'simplecov-console'
-
-require 'chef/knife/digital_ocean_droplet_create'
-require 'chef/knife/digital_ocean_droplet_destroy'
-require 'chef/knife/digital_ocean_droplet_list'
-require 'chef/knife/digital_ocean_droplet_reboot'
-require 'chef/knife/digital_ocean_droplet_power'
-require 'chef/knife/digital_ocean_droplet_powercycle'
-require 'chef/knife/digital_ocean_droplet_rename'
-require 'chef/knife/digital_ocean_droplet_snapshot'
-require 'chef/knife/digital_ocean_droplet_rebuild'
-require 'chef/knife/digital_ocean_droplet_resize'
-require 'chef/knife/digital_ocean_image_list'
-require 'chef/knife/digital_ocean_region_list'
-require 'chef/knife/digital_ocean_size_list'
-require 'chef/knife/digital_ocean_sshkey_list'
-require 'chef/knife/digital_ocean_sshkey_create'
-require 'chef/knife/digital_ocean_sshkey_destroy'
-require 'chef/knife/digital_ocean_domain_list'
-require 'chef/knife/digital_ocean_domain_create'
-require 'chef/knife/digital_ocean_domain_destroy'
-require 'chef/knife/digital_ocean_domain_record_list'
-require 'chef/knife/digital_ocean_domain_record_create'
-require 'chef/knife/digital_ocean_domain_record_edit'
-require 'chef/knife/digital_ocean_domain_record_destroy'
-require 'chef/knife/digital_ocean_account_info'
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
@@ -49,14 +23,21 @@ RSpec.configure do |c|
   c.before(:each) do
     Chef::Config.reset
     Chef::Config[:knife] = {}
+    Chef::Config['knife']['digital_ocean_access_token'] = ENV['DIGITALOCEAN_ACCESS_TOKEN'] || 'FAKE_ACCESS_TOKEN'
+
+    if subject.class.respond_to? :load_deps
+      subject.class.load_deps
+    end
+
+    #allow(subject).to receive(:client).and_return client
   end
 end
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-  Coveralls::SimpleCov::Formatter,
-  SimpleCov::Formatter::HTMLFormatter,
-  SimpleCov::Formatter::Console
-]
+#SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+#  Coveralls::SimpleCov::Formatter,
+#  SimpleCov::Formatter::HTMLFormatter,
+#  SimpleCov::Formatter::Console
+#]
 SimpleCov.start
 
 # Cleverly borrowed from knife-rackspace, thank you!

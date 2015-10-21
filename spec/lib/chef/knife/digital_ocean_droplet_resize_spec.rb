@@ -1,7 +1,7 @@
 require 'spec_helper'
+require 'chef/knife/digital_ocean_droplet_resize'
 
 describe Chef::Knife::DigitalOceanDropletResize do
-  subject { Chef::Knife::DigitalOceanDropletResize.new }
 
   let(:access_token) { ENV['DIGITALOCEAN_ACCESS_TOKEN'] }
 

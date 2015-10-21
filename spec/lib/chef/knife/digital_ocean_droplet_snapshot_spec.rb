@@ -1,7 +1,7 @@
 require 'spec_helper'
+require 'chef/knife/digital_ocean_droplet_snapshot'
 
 describe Chef::Knife::DigitalOceanDropletSnapshot do
-  subject { Chef::Knife::DigitalOceanDropletSnapshot.new }
 
   let(:access_token) { ENV['DIGITALOCEAN_ACCESS_TOKEN'] }
 

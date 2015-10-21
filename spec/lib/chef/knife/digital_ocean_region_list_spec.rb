@@ -1,10 +1,7 @@
 require 'spec_helper'
+require 'chef/knife/digital_ocean_region_list'
 
 describe Chef::Knife::DigitalOceanRegionList do
-  subject do
-    s = Chef::Knife::DigitalOceanRegionList.new
-    s
-  end
 
   let(:access_token) { ENV['DIGITALOCEAN_ACCESS_TOKEN'] }
 

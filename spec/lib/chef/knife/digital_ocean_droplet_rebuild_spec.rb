@@ -1,7 +1,7 @@
 require 'spec_helper'
+require 'chef/knife/digital_ocean_droplet_rebuild'
 
 describe Chef::Knife::DigitalOceanDropletRebuild do
-  subject { Chef::Knife::DigitalOceanDropletRebuild.new }
 
   let(:access_token) { ENV['DIGITALOCEAN_ACCESS_TOKEN'] }
 

@@ -1,7 +1,7 @@
 require 'spec_helper'
+require 'chef/knife/digital_ocean_sshkey_create'
 
 describe Chef::Knife::DigitalOceanSshkeyCreate do
-  subject { Chef::Knife::DigitalOceanSshkeyCreate.new }
 
   let(:access_token) { ENV['DIGITALOCEAN_ACCESS_TOKEN'] }
 

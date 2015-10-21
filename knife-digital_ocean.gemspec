@@ -13,10 +13,10 @@ Gem::Specification.new do |gem|
   gem.homepage      = 'https://github.com/rmoriz/knife-digital_ocean'
   gem.license       = 'Apache 2.0'
 
-  gem.add_dependency 'chef', '>= 10.18'
+  gem.add_dependency 'chef', '>= 12.5.1'
   gem.add_dependency 'droplet_kit', '~> 1.3.0'
 
-  gem.add_development_dependency 'rspec', '~> 3.1'
+  gem.add_development_dependency 'rspec', '~> 3.3'
   gem.add_development_dependency 'rubocop', '~> 0.27'
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'knife-solo'
